@@ -69,14 +69,15 @@ namespace AspNetIdentity_Server
             .AddInMemoryApiScopes(Config.ApiScopes)
             .AddInMemoryClients(Config.Clients)
             .AddAspNetIdentity<User>()
-            .AddSigningCredential(InitializeRsaKey())
-            .AddWsFederationPlugin(options => new WsFederationOptions
+            // .AddSigningCredential(InitializeRsaKey())
+            .AddWsFederationPlugin(options =>
             {
-                // WsFederationEndpoint = "https://localhost:5001/wsfed",
-                Licensee = "DEMO",
-                LicenseKey = "eyJTb2xkRm9yIjowLjAsIktleVByZXNldCI6NiwiU2F2ZUtleSI6ZmFsc2UsIkxlZ2FjeUtleSI6ZmFsc2UsIlJlbmV3YWxTZW50VGltZSI6IjAwMDEtMDEtMDFUMDA6MDA6MDAiLCJhdXRoIjoiREVNTyIsImV4cCI6IjIwMjAtMTItMTlUMDA6MDA6MDAiLCJpYXQiOiIyMDIwLTExLTE5VDEwOjE4OjI2Iiwib3JnIjoiREVNTyIsImF1ZCI6M30=.UhTAxychYJHyF39zhgwN8waQn3nraIW2Qm2Sw+wb5ISnqzO3KJbr+t/mp8w6NdgMlzj7SXZ36QqkP5/c9hdaIzS+/2UPl6ndSI7B4+up4FlhAntEDBumODY6Pgr5IF/BcFEvk09vm65cA84DRMsDcMeREDkkjYNGVbeJjLzpOzJ6QmQifVplYIblR38A9qYDeTdToh9dI8zT1n8McZWW8tYi9YES8/YJM4UBxBkuO8Ej6haFihPeVZkXmzAOkQRWRwy4+06VxC4tGzJeVWNK4vBLEpZxLTr81To2MnRhhNjzjqx/oaJfm7FmcqhVlcLobFTsoDy8pQmIK9tO5mF+aoic6TJBvahPIwt7BIsJHFMjqM4RNw/97T81WMhIAdev9rrhVTVLonyxgko24JCOUQIGnvaKF4eFZ4bKcsDNr1ymOjgdM5zFGwuLAAY+Okk+Ftl5TPa/x5aZSIg6SI6dZPD9dxFuC5e3kLCniSS6fuz2K+cKqdOBtq2lJyloWZt1yyoC9+suy45NrLOMVQeWwsXqysACFjPVU3OBoCFD00Vt3vaw6x8sv7bdRZdM8PRfRdB+A09bOhmq3PUA8pTTcDTuyRS5cncyGMlTkwnFybbziAWGDVQP0hug4HJdfRF6c2BmqP6/S1Js7ULPLSevyKQzs7BJmYcKlHmSN04QlrE="
+                options.Licensee = "DEMO";
+                options.LicenseKey =
+                    "eyJTb2xkRm9yIjowLjAsIktleVByZXNldCI6NiwiU2F2ZUtleSI6ZmFsc2UsIkxlZ2FjeUtleSI6ZmFsc2UsIlJlbmV3YWxTZW50VGltZSI6IjAwMDEtMDEtMDFUMDA6MDA6MDAiLCJhdXRoIjoiREVNTyIsImV4cCI6IjIwMjAtMTItMTlUMDA6MDA6MDAiLCJpYXQiOiIyMDIwLTExLTE5VDEwOjE4OjI2Iiwib3JnIjoiREVNTyIsImF1ZCI6M30=.UhTAxychYJHyF39zhgwN8waQn3nraIW2Qm2Sw+wb5ISnqzO3KJbr+t/mp8w6NdgMlzj7SXZ36QqkP5/c9hdaIzS+/2UPl6ndSI7B4+up4FlhAntEDBumODY6Pgr5IF/BcFEvk09vm65cA84DRMsDcMeREDkkjYNGVbeJjLzpOzJ6QmQifVplYIblR38A9qYDeTdToh9dI8zT1n8McZWW8tYi9YES8/YJM4UBxBkuO8Ej6haFihPeVZkXmzAOkQRWRwy4+06VxC4tGzJeVWNK4vBLEpZxLTr81To2MnRhhNjzjqx/oaJfm7FmcqhVlcLobFTsoDy8pQmIK9tO5mF+aoic6TJBvahPIwt7BIsJHFMjqM4RNw/97T81WMhIAdev9rrhVTVLonyxgko24JCOUQIGnvaKF4eFZ4bKcsDNr1ymOjgdM5zFGwuLAAY+Okk+Ftl5TPa/x5aZSIg6SI6dZPD9dxFuC5e3kLCniSS6fuz2K+cKqdOBtq2lJyloWZt1yyoC9+suy45NrLOMVQeWwsXqysACFjPVU3OBoCFD00Vt3vaw6x8sv7bdRZdM8PRfRdB+A09bOhmq3PUA8pTTcDTuyRS5cncyGMlTkwnFybbziAWGDVQP0hug4HJdfRF6c2BmqP6/S1Js7ULPLSevyKQzs7BJmYcKlHmSN04QlrE=";
             })
-            .AddInMemoryRelyingParties(new List<RelyingParty>());
+            .AddInMemoryRelyingParties(new List<RelyingParty>())
+            .AddDeveloperSigningCredential();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
